@@ -1,15 +1,13 @@
 {
   "name": "getgitspullrequests",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "An npm package for getting the list of pull requests from Git given a Git token.",
   "main": "index.js",
-  "scripts": {
-    "test": "test"
-  },
-  "author": "",
+  "scripts": {},
+  "author": "Nico Pampe",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.1"
   }
 }

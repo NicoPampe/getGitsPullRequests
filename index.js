@@ -1,9 +1,6 @@
 import fetch from 'node-fetch'
 import jq from 'node-jq'
 
-// TODO: this should be passed in
-const ghToken = '0f6793a2b0fec625ad2e99d01e6e76cf9a746f20'
-
 // Let's try just a fetch
 function getClosedPullRequests(token) {
   return fetch("https://api.github.com/repos/growombud/outside-transform-api/pulls?state=closed", {
