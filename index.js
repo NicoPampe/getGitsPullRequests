@@ -1,5 +1,4 @@
 import fetch from 'node-fetch'
-import jq from 'node-jq'
 
 // Let's try just a fetch
 function getClosedPullRequests(token) {
