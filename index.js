@@ -11,6 +11,7 @@ function getClosedPullRequests(ghUrl, ghToken) {
   }).then(data => data.json());
 }
 
+// TODO: expose this in the cli tool
 export async function getLastMergedPR(ghUrl) {
   const ghToken = process.env.GH_TOKEN;
   if (!ghToken) {
@@ -38,4 +39,9 @@ export async function getLastMergedPR(ghUrl) {
     .find((pull) => pull.merged_at);
 
   return lastMerged;
+}
+
+export async function getLastMergedPrNumber(ghUrl) {
+  const lastMerged = await getLastMergedPR(ghUrl)
+  return lastMerged.prNumber;
 }
