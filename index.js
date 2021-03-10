@@ -36,4 +36,6 @@ export async function getLastMergedPR(ghUrl) {
       return bDate - aDate;
     })
     .find((pull) => pull.merged_at);
+
+  return lastMerged;
 }

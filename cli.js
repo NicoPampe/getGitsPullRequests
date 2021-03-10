@@ -8,5 +8,5 @@ const argv = yargs(hideBin(process.argv)).argv
 if (!argv.gitUrl) {
   throw new Error("Must provide a github url")
 } else {
-  getLastMergedPR(argv.gitUrl)
+  console.log(getLastMergedPR(argv.gitUrl));
 }
