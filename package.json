@@ -1,6 +1,6 @@
 {
   "name": "getgitspullrequests",
-  "version": "0.4.0",
+  "version": "0.6.0",
   "description": "An npm package for getting the list of pull requests from Git given a Git token.",
   "main": "index.js",
   "scripts": {},
@@ -12,7 +12,8 @@
     "url": "git+https://github.com/NicoPampe/getGitsPullRequests"
   },
   "dependencies": {
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "yargs": "^16.2.0"
   },
   "bin": {
     "getLastMergedPR": "./cli.js"

@@ -1,24 +1,24 @@
 import fetch from 'node-fetch'
 
 // Let's try just a fetch
-function getClosedPullRequests(token) {
-  return fetch("https://api.github.com/repos/growombud/outside-transform-api/pulls?state=closed", {
+function getClosedPullRequests(ghUrl, ghToken) {
+  return fetch(ghUrl + "/pulls?state=closed", {
     method: 'GET',
     headers: {
       Aceept: 'application/vnd.github.v3+json',
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${ghToken}`,
     }
   }).then(data => data.json());
 }
 
-export async function getLastMergedPR() {
+export async function getLastMergedPR(ghUrl) {
   const ghToken = process.env.GH_TOKEN
   if (!ghToken) {
     // TODO: this error doesn't really help explain how to get the token in the env. Or provide a way to set the token.
     throw new Error("Must provide a GitHub token in the process.env")
   }
 
-  const fetchPRList = await getClosedPullRequests(ghToken)
+  const fetchPRList = await getClosedPullRequests(ghUrl, ghToken)
   const prList = fetchPRList.map(pr => {
     return {
       branchName: pr.head.ref,
