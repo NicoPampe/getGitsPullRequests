@@ -11,7 +11,7 @@ function getClosedPullRequests(token) {
   }).then(data => data.json());
 }
 
-export async function getLastMergedPR(ghToken) {
+async function getLastMergedPR(ghToken) {
   const fetchPRList = await getClosedPullRequests(ghToken)
   const prList = fetchPRList.map(pr => {
     return {
@@ -29,4 +29,8 @@ export async function getLastMergedPR(ghToken) {
       return bDate - aDate;
     })
     .find((pull) => pull.merged_at);
+}
+
+module.exports = {
+  getLastMergedPR
 }
