@@ -11,7 +11,13 @@ function getClosedPullRequests(token) {
   }).then(data => data.json());
 }
 
-async function getLastMergedPR(ghToken) {
+export async function getLastMergedPR() {
+  const ghToken = process.env.GH_TOKEN
+  if (!ghToken) {
+    // TODO: this error doesn't really help explain how to get the token in the env. Or provide a way to set the token.
+    throw new Error("Must provide a GitHub token in the process.env")
+  }
+
   const fetchPRList = await getClosedPullRequests(ghToken)
   const prList = fetchPRList.map(pr => {
     return {
@@ -21,6 +27,7 @@ async function getLastMergedPR(ghToken) {
     }
   })
 
+  // inspried by https://github.com/intuit/auto/blob/7427c3937186b456a803c26c923aaa905efb8d56/packages/core/src/auto.ts#L859
   const lastMerged = prList
     .sort((a, b) => {
       const aDate = a.merged_at ? new Date(a.merged_at).getTime() : 0;
@@ -29,8 +36,4 @@ async function getLastMergedPR(ghToken) {
       return bDate - aDate;
     })
     .find((pull) => pull.merged_at);
-}
-
-module.exports = {
-  getLastMergedPR
 }
