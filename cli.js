@@ -5,8 +5,8 @@ import { hideBin } from 'yargs/helpers'
 
 const argv = yargs(hideBin(process.argv)).argv
 
-if (!argv.gitUrl) {
-  throw new Error("Must provide a github url")
+if (!argv.owner || !argv.repo) {
+  throw new Error("Must provide a GitHub repo and owner")
 } else {
-  console.log(await getLastMergedPrNumber(argv.gitUrl));
+  console.log(await getLastMergedPrNumber(argv.owner, argv.repo));
 }

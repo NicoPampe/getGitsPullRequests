@@ -12,13 +12,14 @@ function getClosedPullRequests(ghUrl, ghToken) {
 }
 
 // TODO: expose this in the cli tool
-export async function getLastMergedPR(ghUrl) {
+export async function getLastMergedPR(ghOwner, ghRepo) {
   const ghToken = process.env.GH_TOKEN;
   if (!ghToken) {
     // TODO: this error doesn't really help explain how to get the token in the env. Or provide a way to set the token.
     throw new Error("Must provide a GitHub token in the process.env")
   }
 
+  const ghUrl = `https://api.github.com/repos/${ghOwner}/${ghRepo}`
   const fetchPRList = await getClosedPullRequests(ghUrl, ghToken)
   const prList = fetchPRList.map(pr => {
     return {
@@ -41,7 +42,7 @@ export async function getLastMergedPR(ghUrl) {
   return lastMerged;
 }
 
-export async function getLastMergedPrNumber(ghUrl) {
-  const lastMerged = await getLastMergedPR(ghUrl)
+export async function getLastMergedPrNumber(ghOwner, ghRepo) {
+  const lastMerged = await getLastMergedPR(ghOwner, ghRepo)
   return lastMerged.prNumber;
 }

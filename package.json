@@ -1,6 +1,6 @@
 {
   "name": "getgitspullrequests",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "An npm package for getting the list of pull requests from Git given a Git token.",
   "main": "index.js",
   "scripts": {},
