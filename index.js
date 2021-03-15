@@ -46,3 +46,8 @@ export async function getLastMergedPrNumber(ghOwner, ghRepo) {
   const lastMerged = await getLastMergedPR(ghOwner, ghRepo)
   return lastMerged.prNumber;
 }
+
+export async function getLastMergedPrRef(ghOwner, ghRepo) {
+  const lastMerged = await getLastMergedPR(ghOwner, ghRepo)
+  return lastMerged.branchName;
+}
